@@ -1,0 +1,17 @@
+﻿@inherits LayoutComponentBase
+<MudThemeProvider />
+<MudDialogProvider />
+<MudSnackbarProvider />
+
+
+<MudLayout>
+    <MudAppBar Color="Color.Default" Fixed="false" Elevation="0">
+        <MudSpacer/>
+        <MudText Color="Color.Surface" Typo="Typo.h4" Align="Align.Center" Style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">Car Price Predictor</MudText>
+        <MudSpacer/>
+    </MudAppBar>
+
+    <MudMainContent>
+        @Body
+    </MudMainContent>
+</MudLayout>

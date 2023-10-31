@@ -1,0 +1,58 @@
+﻿@page "/"
+
+<MudText> The more the better.</MudText>
+
+<MudGrid>
+    <MudItem xs="3" Class="pa-4">  
+        <MudForm @ref="form" @bind-IsValid="@success" @bind-Errors="@errors" >
+            <MudTextField T="string" Placeholder="Brand"/>
+            <MudTextField T="string" Placeholder="Fuel type"/>
+            <MudTextField T="string" Placeholder="Aspiration"/>
+            <MudTextField T="string" Placeholder="Doors"/>
+            <MudTextField T="string" Placeholder="Body style"/>
+            <MudTextField T="string" Placeholder="Drive wheels" />
+        </MudForm>
+    </MudItem>
+    <MudItem xs="3" Class="pa-4">
+        <MudForm @ref="form" @bind-IsValid="@success" @bind-Errors="@errors">
+            <MudTextField T="string" Placeholder="Engine location" />
+            <MudTextField T="string" Placeholder="Wheel base" />
+            <MudTextField T="string" Placeholder="Length" />
+            <MudTextField T="string" Placeholder="Width" />
+            <MudTextField T="string" Placeholder="Height" />
+            <MudTextField T="string" Placeholder="Curb weight" />
+        </MudForm>
+    </MudItem>
+
+    <MudItem xs="3" Class="pa-4">
+            <MudForm>
+                <MudTextField T="string" Placeholder="Engine type" />
+                <MudTextField T="string" Placeholder="No. of cylinders" />
+                <MudTextField T="string" Placeholder="Engine size" />
+                <MudTextField T="string" Placeholder="Fuel system" />
+                <MudTextField T="string" Placeholder="Bore" />
+                <MudTextField T="string" Placeholder="Stroke" />
+
+            </MudForm>
+    </MudItem>
+    <MudItem xs="3" Class="pa-4">
+        <MudForm>
+            <MudTextField T="string" Placeholder="Compression ratio" />
+            <MudTextField T="string" Placeholder="Horsepower" />
+            <MudTextField T="string" Placeholder="Peak rpm" />
+            <MudTextField T="string" Placeholder="City mpg" />
+            <MudTextField T="string" Placeholder="Highway mpg" />
+        </MudForm>
+    </MudItem>
+    <MudItem xs=12 Class="pa-4 mt-4">
+        <MudButton Variant="Variant.Filled" Color="Color.Primary" DisableElevation="true" OnClick="@(()=>form.Validate())">Check</MudButton>
+    </MudItem>
+</MudGrid>
+
+
+@code {
+    bool success;
+    string[] errors = { };
+    MudTextField<string> pwField1;
+    MudForm form;
+}
