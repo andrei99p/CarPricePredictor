@@ -5,25 +5,25 @@
         public string? Brand { get; set; }
         public string? FuelType { get; set; }
         public string? Aspiration { get; set; }
-        public string? Doors { get; set; }
         public string? BodyStyle { get; set; }
         public string? DriveWheels { get; set; }
         public string? EngineLocation { get; set; }
-        public string? WheelBase { get; set; }
-        public string? Length { get; set; }
-        public string? Width { get; set; }
-        public string? Height { get; set; }
-        public string? CurbWeight { get; set; }
         public string? EngineType { get; set; }
         public string? NoOfCylinders { get; set; }
-        public string? EngineSize { get; set; }
         public string? FuelSystem { get; set; }
-        public string? Bore { get; set; }
-        public string? Stroke { get; set; }
-        public string? CompressionRatio { get; set; }
-        public string? Horsepower { get; set; }
-        public string? PeakRpm { get; set; }
-        public string? CityMpg { get; set; }
-        public string? HighwayMpg { get; set; }
+        public double? WheelBase { get; set; }
+        public double? Length { get; set; }
+        public double? Width { get; set; }
+        public double? Height { get; set; }
+        public double? Bore { get; set; }
+        public double? Stroke { get; set; }
+        public int? CurbWeight { get; set; }
+        public int? EngineSize { get; set; }
+        public int? CompressionRatio { get; set; }
+        public int? Horsepower { get; set; }
+        public int? PeakRpm { get; set; }
+        public int? CityMpg { get; set; }
+        public int? HighwayMpg { get; set; }
+        public string? Doors { get; set; }
     }
 }

@@ -1,58 +1,90 @@
-﻿@page "/"
+﻿@using Classes;
+@page "/"
+
+@inject API apiService
 
 <MudText> The more the better.</MudText>
+ 
+<MudForm @ref="form" @bind-IsValid="@success" @bind-Errors="@errors" >
+    <MudGrid>
+        <MudItem xs="3" Class="pa-4"> 
+            <MudTextField T="string" @bind-Value="@carInfo.Brand" Placeholder="Brand" />
+            <MudTextField T="string" @bind-Value="@carInfo.FuelType" Placeholder="Fuel type" />
+            <MudTextField T="string" @bind-Value="@carInfo.Aspiration" Placeholder="Aspiration"  />
+            <MudTextField T="string" @bind-Value="@carInfo.Doors" Placeholder="Doors" />
+            <MudTextField T="string" @bind-Value="@carInfo.BodyStyle" Placeholder="Body style" />
+            <MudTextField T="string" @bind-Value="@carInfo.DriveWheels" Placeholder="Drive wheels" />
+        </MudItem>
+        <MudItem xs="3" Class="pa-4">
+            <MudTextField T="string" @bind-Value="@carInfo.EngineLocation" Placeholder="Engine location"/>
+            <MudTextField T="double?" @bind-Value="@carInfo.WheelBase" Placeholder="Wheel base"/>
+            <MudTextField T="double?" @bind-Value="@carInfo.Length" Placeholder="Length"  />
+            <MudTextField T="double?" @bind-Value="@carInfo.Width" Placeholder="Width" />
+            <MudTextField T="double?" @bind-Value="@carInfo.Height" Placeholder="Height"  />
+            <MudTextField T="int?" @bind-Value="@carInfo.CurbWeight" Placeholder="Curb weight"/>
+        </MudItem>
+        <MudItem xs="3" Class="pa-4">
+            <MudTextField T="string" @bind-Value="@carInfo.EngineType" Placeholder="Engine type"  />
+            <MudTextField T="string" @bind-Value="@carInfo.NoOfCylinders" Placeholder="No. of cylinders"  />
+            <MudTextField T="int?" @bind-Value="@carInfo.EngineSize" Placeholder="Engine size"  />
+            <MudTextField T="string" @bind-Value="@carInfo.FuelSystem" Placeholder="Fuel system"  />
+            <MudTextField T="double?" @bind-Value="@carInfo.Bore" Placeholder="Bore"  />
+            <MudTextField T="double?" @bind-Value="@carInfo.Stroke" Placeholder="Stroke"  />
+        </MudItem>   
+        <MudItem xs="3" Class="pa-4">
+            <MudTextField T="int?" @bind-Value="@carInfo.CompressionRatio" Placeholder="Compression ratio" />
+            <MudTextField T="int?" @bind-Value="@carInfo.Horsepower" Placeholder="Horsepower"/>
+            <MudTextField T="int?" @bind-Value="@carInfo.PeakRpm" Placeholder="Peak rpm"/>
+            <MudTextField T="int?" @bind-Value="@carInfo.CityMpg" Placeholder="City mpg"/>
+            <MudTextField T="int?" @bind-Value="@carInfo.HighwayMpg" Placeholder="Highway mpg"/>
+        </MudItem>
+    </MudGrid>
 
-<MudGrid>
-    <MudItem xs="3" Class="pa-4">  
-        <MudForm @ref="form" @bind-IsValid="@success" @bind-Errors="@errors" >
-            <MudTextField T="string" Placeholder="Brand"/>
-            <MudTextField T="string" Placeholder="Fuel type"/>
-            <MudTextField T="string" Placeholder="Aspiration"/>
-            <MudTextField T="string" Placeholder="Doors"/>
-            <MudTextField T="string" Placeholder="Body style"/>
-            <MudTextField T="string" Placeholder="Drive wheels" />
-        </MudForm>
-    </MudItem>
-    <MudItem xs="3" Class="pa-4">
-        <MudForm @ref="form" @bind-IsValid="@success" @bind-Errors="@errors">
-            <MudTextField T="string" Placeholder="Engine location" />
-            <MudTextField T="string" Placeholder="Wheel base" />
-            <MudTextField T="string" Placeholder="Length" />
-            <MudTextField T="string" Placeholder="Width" />
-            <MudTextField T="string" Placeholder="Height" />
-            <MudTextField T="string" Placeholder="Curb weight" />
-        </MudForm>
-    </MudItem>
-
-    <MudItem xs="3" Class="pa-4">
-            <MudForm>
-                <MudTextField T="string" Placeholder="Engine type" />
-                <MudTextField T="string" Placeholder="No. of cylinders" />
-                <MudTextField T="string" Placeholder="Engine size" />
-                <MudTextField T="string" Placeholder="Fuel system" />
-                <MudTextField T="string" Placeholder="Bore" />
-                <MudTextField T="string" Placeholder="Stroke" />
-
-            </MudForm>
-    </MudItem>
-    <MudItem xs="3" Class="pa-4">
-        <MudForm>
-            <MudTextField T="string" Placeholder="Compression ratio" />
-            <MudTextField T="string" Placeholder="Horsepower" />
-            <MudTextField T="string" Placeholder="Peak rpm" />
-            <MudTextField T="string" Placeholder="City mpg" />
-            <MudTextField T="string" Placeholder="Highway mpg" />
-        </MudForm>
-    </MudItem>
     <MudItem xs=12 Class="pa-4 mt-4">
-        <MudButton Variant="Variant.Filled" Color="Color.Primary" DisableElevation="true" OnClick="@(()=>form.Validate())">Check</MudButton>
+        <MudButton Variant="Variant.Filled" Color="Color.Primary" DisableElevation="true" OnClick="Send">Check</MudButton>
     </MudItem>
-</MudGrid>
-
+</MudForm>
 
 @code {
     bool success;
     string[] errors = { };
-    MudTextField<string> pwField1;
     MudForm form;
+
+    CarInfo carInfo = new CarInfo()
+    {
+        Brand="bmw",
+        FuelType="gas",
+        Aspiration="std",
+        Doors="four",
+        BodyStyle="sedan",
+        DriveWheels="fwd",
+        EngineLocation="front",
+        WheelBase=90,
+        Length=110,
+        Width=60,
+        Height=51,
+        CurbWeight=3390,
+        EngineType="ohc",
+        NoOfCylinders="six",
+        EngineSize=220,
+        FuelSystem="mpfi",
+        Bore=3.15,
+        Stroke=3.6,
+        CompressionRatio=9,
+        Horsepower=180,
+        PeakRpm=5400,
+        CityMpg=30,
+        HighwayMpg=33
+    };
+
+
+    async Task Send()
+    {
+        await form.Validate();
+        if(form.IsValid)
+        {
+            await apiService.InvokeRequestResponseService(carInfo);
+        }
+    }
+
 }
